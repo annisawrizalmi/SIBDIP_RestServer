@@ -12,7 +12,7 @@ class AsistenAdd extends RestController {
         $this->load->model('m_asistent');
         $this->load->library('form_validation');
     }
-
+//oke
 //menambahkan data
 public function AssistantAdd_post()
 {
