@@ -81,11 +81,11 @@ $route['jadwal_deleted/(:any)']                    = 'Jadwal/JadwalDeleted/Jadwa
 $route['jadwal_updated/(:any)']                    = 'Jadwal/JadwalUpdated/JadwalUpdated/$1'; 
 
 //Absen Peserta - (belum oke)
-$route['absen_all_list']                           = 'Absen/AbsenListAll/index';
-$route['absen_by_id/(:any)']                       = 'Absen/AbsenGetId/AbsenGetById/$1';
-$route['absen_add']                                = 'Absen/AbsenAdd/AddAbsen';
-$route['absen_deleted/(:any)']                     = 'Absen/AbsenDeleted/AbsenDeleted/$1';
-$route['absen_updated/(:any)']                     = 'Absen/AbsenUpdated/AbsenUpdated/$1'; 
+$route['absen_all_list']                           = 'Absen/PresenceListAll/index';
+$route['absen_by_id/(:any)']                       = 'Absen/PresenceGetId/PresenceGetById/$1';
+$route['absen_add']                                = 'Absen/PresenceAdd/AddPresence';
+$route['absen_deleted/(:any)']                     = 'Absen/PresenceDeleted/PresenceDeleted/$1';
+$route['absen_updated/(:any)']                     = 'Absen/PresenceUpdated/PresenceUpdated/$1'; 
 
 //Nilai Peserta - (belum oke)
 $route['nilai_all_list']                           = 'Nilai/NilaiListAll/index';

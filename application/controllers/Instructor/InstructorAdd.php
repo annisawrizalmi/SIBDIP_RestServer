@@ -60,7 +60,6 @@ public function AddInstructor_post()
         //load Data 
         $insert_data = [
             'pegawai_id'                => $instructor->idterurut($i),
-            'uid'                       => $this->post('uid', TRUE),
             'sort_id'                   => $this->post('sort_id', TRUE),
             'assistant'                 => $this->post('assistant', TRUE),
             'nik'                       => $this->post('nik', TRUE),
@@ -81,7 +80,8 @@ public function AddInstructor_post()
             'agama'                     => $this->post('agama', TRUE),
             'status_perkawinan'         => $this->post('status_perkawinan', TRUE),
             'pendidikan'                => $this->post('pendidikan', TRUE),
-            'jurusan'                   => $this->post('jurusan', TRUE),
+            'jabatan'                   => $this->post('jabatan', TRUE),
+            'jabatan_ext'               => $this->post('jabatan_ext', TRUE),
             'tahun_tamat'               => $this->post('tahun_tamat', TRUE),
             'jabatan'                   => $this->post('jabatan', TRUE),
             'pangkat'                   => $this->post('pangkat', TRUE),

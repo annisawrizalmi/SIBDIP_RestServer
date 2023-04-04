@@ -18,7 +18,6 @@ public function InstructorUpdated_put($id)
 
     $instructor = new m_instructor;
 
-
     $data_instructor = $this->m_instructor->GetByIdInstructor($id);
 
      //Upload Gambar

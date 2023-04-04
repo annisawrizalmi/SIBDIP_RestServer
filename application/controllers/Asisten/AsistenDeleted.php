@@ -16,6 +16,7 @@ class AsistenDeleted extends RestController {
     {
         $asisten = new m_asisten;
         
+        //menghapus avatar
         $data_asisten = $this->m_asisten->GetByIdAssistant($id);
         @unlink($data_asisten[0]['avatar']);
         $cekData = $asisten->deletedAssistant($id);

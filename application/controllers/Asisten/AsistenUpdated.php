@@ -18,7 +18,6 @@ public function AssistantUpdated_put($id)
 
     $asisten = new m_asistent;
 
-
     $data_asisten = $this->m_asistent->GetByIdAssistant($id);
 
      //Upload Gambar

@@ -22,15 +22,14 @@ class M_Users extends CI_Model
     //all users
     public function getDataUsers()
     {
-        $sql = $this->db->select('p.pegawai_id, p.uid, p.sort_id, d.division, p.superior_id, p.assistant, p.sort_number, 
-        p.nik, p.nip, p.met, p.exp_met, p.skill, p.scheme, p.gelar_depan, p.nama, p.gelar_belakang, p.jenis_kelamin, 
-        p.tempat_lahir, p.tanggal_lahir, p.alamat, pr.provinsi, kb.kabupaten, kc.kecamatan, kl.kelurahan, p.telepon, 
-        p.email, p.agama, p.status_perkawinan, p.golongan_darah, p.pendidikan, p.jurusan, p.tahun_tamat, p.status, 
-        p.jabatan, p.jabatan_ext, p.pangkat, p.golongan, p.profil_singkat, p.latar_pendidikan, p.no_bpjs, p.faskes_kesehatan, 
-        p.alamat_faskes_kesehatan, p.faskes_gigi, p.alamat_faskes_gigi, p.office, p.office_phone, p.training, p.work_exp, 
-        p.teach_exp, p.scientific_work, p.special_sub, p.npwp, p.no_npwp, p.no_efin, p.type_status, p.pejabat, p.penanggungjawab, 
-        p.username, p.password, p.level, p.role, p.avatar, p.avatar_slug, p.ava, p.signature, p.blocked, p.activated, p.att, 
-        p.org_publish, p.token, p.status_token, p.date_token, p.end_token, p.date_added_employee, p.date_updated_employee')
+        $sql = $this->db->select('p.pegawai_id, p.uid, p.sort_id, d.division, p.superior_id, p.sort_number, 
+        p.nik, p.nip, p.gelar_depan, p.nama, p.gelar_belakang, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, 
+        p.alamat, pr.provinsi, kb.kabupaten, kc.kecamatan, kl.kelurahan, p.telepon, p.email, p.agama, p.status_perkawinan, 
+        p.golongan_darah, p.pendidikan, p.jurusan, p.tahun_tamat, p.status, p.jabatan, p.jabatan_ext, p.pangkat, 
+        p.golongan, p.profil_singkat, p.latar_pendidikan, p.no_bpjs, p.faskes_kesehatan, p.alamat_faskes_kesehatan, 
+        p.faskes_gigi, p.alamat_faskes_gigi, p.no_npwp, p.no_efin, p.pejabat, p.penanggungjawab, p.username, p.password, 
+        p.level, p.role, p.avatar, p.avatar_slug, p.ava, p.signature, p.blocked, p.activated, p.att, p.org_publish, p.token, 
+        p.status_token, p.date_token, p.end_token, p.date_added_employee, p.date_updated_employee')
         ->from('tb_pegawai p')
         ->join('tb_division d', 'd.division_id = p.division_id', 'inner')
         ->join('tb_provinsi pr','p.id_provinsi = pr.id_provinsi', 'inner')
@@ -43,19 +42,17 @@ class M_Users extends CI_Model
     }
 
 
-
     //GetById
     public function GetByIdUsers($id)
     {
-        $sql = "SELECT p.pegawai_id, p.uid, p.sort_id, d.division, p.superior_id, p.assistant, p.sort_number, 
-        p.nik, p.nip, p.met, p.exp_met, p.skill, p.scheme, p.gelar_depan, p.nama, p.gelar_belakang, p.jenis_kelamin, 
-        p.tempat_lahir, p.tanggal_lahir, p.alamat, pr.provinsi, kb.kabupaten, kc.kecamatan, kl.kelurahan, p.telepon, 
-        p.email, p.agama, p.status_perkawinan, p.golongan_darah, p.pendidikan, p.jurusan, p.tahun_tamat, p.status, 
-        p.jabatan, p.jabatan_ext, p.pangkat, p.golongan, p.profil_singkat, p.latar_pendidikan, p.no_bpjs, p.faskes_kesehatan, 
-        p.alamat_faskes_kesehatan, p.faskes_gigi, p.alamat_faskes_gigi, p.office, p.office_phone, p.training, p.work_exp, 
-        p.teach_exp, p.scientific_work, p.special_sub, p.npwp, p.no_npwp, p.no_efin, p.type_status, p.pejabat, p.penanggungjawab, 
-        p.username, p.password, p.level, p.role, p.avatar, p.avatar_slug, p.ava, p.signature, p.blocked, p.activated, p.att, 
-        p.org_publish, p.token, p.status_token, p.date_token, p.end_token, p.date_added_employee, p.date_updated_employee
+        $sql = "SELECT p.pegawai_id, p.uid, p.sort_id, d.division, p.superior_id, p.sort_number, 
+        p.nik, p.nip, p.gelar_depan, p.nama, p.gelar_belakang, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, 
+        p.alamat, pr.provinsi, kb.kabupaten, kc.kecamatan, kl.kelurahan, p.telepon, p.email, p.agama, p.status_perkawinan, 
+        p.golongan_darah, p.pendidikan, p.jurusan, p.tahun_tamat, p.status, p.jabatan, p.jabatan_ext, p.pangkat, 
+        p.golongan, p.profil_singkat, p.latar_pendidikan, p.no_bpjs, p.faskes_kesehatan, p.alamat_faskes_kesehatan, 
+        p.faskes_gigi, p.alamat_faskes_gigi, p.no_npwp, p.no_efin, p.pejabat, p.penanggungjawab, p.username, p.password, 
+        p.level, p.role, p.avatar, p.avatar_slug, p.ava, p.signature, p.blocked, p.activated, p.att, p.org_publish, p.token, 
+        p.status_token, p.date_token, p.end_token, p.date_added_employee, p.date_updated_employee
         FROM tb_pegawai p 
         INNER JOIN tb_division d ON d.division_id = p.division_id
         INNER JOIN tb_provinsi pr ON p.id_provinsi = pr.id_provinsi

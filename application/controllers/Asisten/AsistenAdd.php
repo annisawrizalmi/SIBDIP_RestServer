@@ -59,9 +59,9 @@ public function AssistantAdd_post()
         //load Data 
         $insert_data = [
             'pegawai_id'                => $asistent->idterurut($i),
-            'uid'                       => $this->post('uid', TRUE),
             'sort_id'                   => $this->post('sort_id', TRUE),
             'assistant'                 => $this->post('assistant', TRUE),
+            'sort_number'                   => $this->post('sort_number', TRUE),
             'nik'                       => $this->post('nik', TRUE),
             'nip'                       => $this->post('nip', TRUE),
             'gelar_depan'               => $this->post('gelar_depan', TRUE),
@@ -83,6 +83,7 @@ public function AssistantAdd_post()
             'jurusan'                   => $this->post('jurusan', TRUE),
             'tahun_tamat'               => $this->post('tahun_tamat', TRUE),
             'jabatan'                   => $this->post('jabatan', TRUE),
+            'jabatan_ext'               => $this->post('jabatan_ext', TRUE),
             'pangkat'                   => $this->post('pangkat', TRUE),
             'golongan'                  => $this->post('golongan', TRUE),
             'office'                    => $this->post('office', TRUE),

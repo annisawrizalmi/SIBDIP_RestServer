@@ -16,69 +16,98 @@ class UserUpdated extends RestController {
 public function UsersUpdated_put($id)
 {
     $users = new m_users;
-    $data = [
-            'uid'                       => $this->put('uid', TRUE),
-            'sort_id'                   => $this->put('sort_id', TRUE),
-            'division_id'               => $this->put('division_id', TRUE),
-            'superior_id'               => $this->put('superior_id', TRUE),
-            'assistant'                 => $this->put('assistant', TRUE),
-            'sort_number'               => $this->put('sort_number', TRUE),
-            'nik'                       => $this->put('nik', TRUE),
-            'nip'                       => $this->put('nip', TRUE),
-            'gelar_depan'               => $this->put('gelar_depan', TRUE),
-            'nama'                      => $this->put('nama', TRUE),
-            'gelar_belakang'            => $this->put('gelar_belakang', TRUE),
-            'jenis_kelamin'             => $this->put('jenis_kelamin', TRUE),
-            'tempat_lahir'              => $this->put('tempat_lahir', TRUE),
-            'tanggal_lahir'             => $this->put('tanggal_lahir', TRUE),
-            'alamat'                    => $this->put('alamat', TRUE),
-            'id_provinsi'               => $this->put('id_provinsi', TRUE),
-            'id_kabupaten'              => $this->put('id_kabupaten', TRUE),
-            'id_kecamatan'              => $this->put('id_kecamatan', TRUE),
-            'id_kelurahan'              => $this->put('id_kelurahan', TRUE),
-            'telepon'                   => $this->put('telepon', TRUE),
-            'email'                     => $this->put('email', TRUE),
-            'agama'                     => $this->put('agama', TRUE),
-            'status_perkawinan'         => $this->put('status_perkawinan', TRUE),
-            'golongan_darah'            => $this->put('golongan_darah', TRUE),
-            'pendidikan'                => $this->put('pendidikan', TRUE),
-            'jurusan'                   => $this->put('jurusan', TRUE),
-            'tahun_tamat'               => $this->put('tahun_tamat', TRUE),
-            'status'                    => $this->put('status', TRUE),
-            'jabatan'                   => $this->put('jabatan', TRUE),
-            'jabatan_ext'               => $this->put('jabatan_ext', TRUE),
-            'pangkat'                   => $this->put('pangkat', TRUE),
-            'golongan'                  => $this->put('golongan', TRUE),
-            'profil_singkat'            => $this->put('profil_singkat', TRUE),
-            'latar_pendidikan'          => $this->put('latar_pendidikan', TRUE),
-            'no_bpjs'                   => $this->put('no_bpjs', TRUE),
-            'faskes_kesehatan'          => $this->put('faskes_kesehatan', TRUE),
-            'alamat_faskes_kesehatan'   => $this->put('alamat_faskes_kesehatan', TRUE),
-            'faskes_gigi'               => $this->put('faskes_gigi', TRUE),
-            'alamat_faskes_gigi'        => $this->put('alamat_faskes_gigi', TRUE),
-            'no_npwp'                   => $this->put('no_npwp', TRUE),
-            'no_efin'                   => $this->put('no_efin', TRUE),
-            'type_status'               => $this->put('type_status', TRUE),
-            'pejabat'                   => $this->put('pejabat', TRUE),
-            'penanggungjawab'           => $this->put('penanggungjawab', TRUE),
-            'username'                  => $this->put('username', TRUE),
-            'password'                  => $this->put('password', TRUE),
-            'level'                     => $this->put('level', TRUE),
-            'role'                      => $this->put('role', TRUE),
-            'avatar'                    => $this->put('avatar', TRUE),
-            'avatar_slug'               => $this->put('avatar_slug', TRUE),
-            'ava'                       => $this->put('ava', TRUE),
-            'signature'                 => $this->put('signature', TRUE),
-            'blocked'                   => $this->put('blocked', TRUE),
-            'activated'                 => $this->put('activated', TRUE),
-            'att'                       => $this->put('att', TRUE),
-            'org_publish'               => $this->put('org_publish', TRUE),
-            'token'                     => $this->put('token', TRUE),
-            'status_token'              => $this->put('status_token', TRUE),
-            'date_token'                => $this->put('date_token', TRUE),
-            'end_token'                 => $this->put('end_token', TRUE),
-            'date_updated_employee'     => date('Y-m-d H:i:s', time()),    
-    ];
+
+    $data_users = $this->m_users->GetByIdUsers($id);
+
+    //Upload Gambar
+    $file = $_FILES['avatar'];
+       
+    $path = "uploads/user/"; //direktori
+
+    //mengecek folder sudah ada atau belum
+    if(!is_dir($path))
+    {
+        mkdir($path, 0777, true);
+    }
+
+    $path_file = "";
+    //pengecekkan file yang diupload
+    if(!empty($file['name'])) {
+        $config['upload_path'] = './' . $path;
+        $config['allowed_types'] = "jpg|jpeg|png|gif";
+        $config['file_name'] = time();
+        $config['max_size'] = 1024;
+        $this->upload->initialize($config);
+
+        if($this->upload->do_upload('avatar')){
+           @unlink($data_users[0]['avatar']);
+            //mendapatkan file yang berhasil diupload
+            $uploadData = $this->upload->data();
+            $path_file = './'. $path . $uploadData['file_name'];
+            $data['avatar'] = $path_file;
+        }
+    }
+
+    $data['uid']                    = $this->input->post('uid', TRUE);
+    $data['sort_id']                = $this->input->post('sort_id', TRUE);
+    $data['division_id']              = $this->input->post('division_id', TRUE);
+    $data['superior_id']              = $this->input->post('superior_id', TRUE);
+    // $data['assistant']              = $this->input->post('assistant', TRUE);
+    $data['sort_number']              = $this->input->post('sort_number', TRUE);
+    $data['nik']                    = $this->input->post('nik', TRUE);
+    $data['nip']                    = $this->input->post('nip', TRUE);
+    $data['gelar_depan']            = $this->input->post('gelar_depan', TRUE);
+    $data['nama']                   = $this->input->post('nama', TRUE);
+    $data['gelar_belakang']         = $this->input->post('gelar_belakang', TRUE);
+    $data['jenis_kelamin']          = $this->input->post('jenis_kelamin', TRUE);
+    $data['tempat_lahir']           = $this->input->post('tempat_lahir', TRUE);
+    $data['tanggal_lahir']          = $this->input->post('tanggal_lahir', TRUE);
+    $data['alamat']                 = $this->input->post('alamat', TRUE);
+    $data['id_provinsi']            = $this->input->post('id_provinsi', TRUE);
+    $data['id_kabupaten']           = $this->input->post('id_kabupaten', TRUE);
+    $data['id_kecamatan']           = $this->input->post('id_kecamatan', TRUE);
+    $data['id_kelurahan']           = $this->input->post('id_kelurahan', TRUE);
+    $data['telepon']                = $this->input->post('telepon', TRUE);
+    $data['email']                  = $this->input->post('email', TRUE);
+    $data['agama']                  = $this->input->post('agama', TRUE);
+    $data['status_perkawinan']      = $this->input->post('status_perkawinan', TRUE);
+    $data['golongan_darah']         = $this->input->post('golongan_darah', TRUE);
+    $data['pendidikan']             = $this->input->post('pendidikan', TRUE);
+    $data['jurusan']                = $this->input->post('jurusan', TRUE);
+    $data['tahun_tamat']            = $this->input->post('tahun_tamat', TRUE);
+    $data['status']                 = $this->input->post('status', TRUE);
+    $data['jabatan']                = $this->input->post('jabatan', TRUE);
+    $data['jabatan_ext']            = $this->input->post('jabatan_ext', TRUE);
+    $data['pangkat']                = $this->input->post('pangkat', TRUE);
+    $data['golongan']               = $this->input->post('golongan', TRUE);
+    $data['profil_singkat']         = $this->input->post('profil_singkat', TRUE);
+    $data['latar_pendidikan']       = $this->input->post('latar_pendidikan', TRUE);
+    $data['no_bpjs']                = $this->input->post('no_bpjs', TRUE);
+    $data['faskes_kesehatan']       = $this->input->post('faskes_kesehatan', TRUE);
+    $data['alamat_faskes_kesehatan']= $this->input->post('alamat_faskes_kesehatan', TRUE);
+    $data['faskes_gigi']            = $this->input->post('faskes_gigi', TRUE);
+    $data['alamat_faskes_gigi']     = $this->input->post('alamat_faskes_gigi', TRUE);
+    $data['no_npwp']                = $this->input->post('no_npwp', TRUE);
+    $data['no_efin']                = $this->input->post('no_efin', TRUE);
+    $data['pejabat']                = $this->input->post('pejabat', TRUE);
+    $data['penanggungjawab']        = $this->input->post('penanggungjawab', TRUE);
+    $data['username']               = $this->input->post('username', TRUE);
+    $data['password']               = $this->input->post('password', TRUE);
+    $data['level']                  = $this->input->post('level', TRUE);
+    $data['role']                   = $this->input->post('role', TRUE); 
+    $data['avatar_slug']            = $this->input->post('avatar_slug', TRUE);
+    $data['ava']                    = $this->input->post('ava', TRUE);
+    $data['signature']              = $this->input->post('signature', TRUE);
+    $data['blocked']                = $this->input->post('blocked', TRUE);
+    $data['activated']              = $this->input->post('activated', TRUE);
+    $data['att']                    = $this->input->post('att', TRUE);
+    $data['org_publish']            = $this->input->post('org_publish', TRUE);
+    $data['token']                  = $this->input->post('token', TRUE);
+    $data['status_token']           = $this->input->post('status_token', TRUE);
+    $data['date_token']             = $this->input->post('date_token', TRUE);
+    $data['end_token']              = $this->input->post('end_token', TRUE);
+    $data['date_updated_employee']  = date('Y-m-d H:i:s', time());     
+
     
     $result_update = $users->updatedUsers($id, $data);
 

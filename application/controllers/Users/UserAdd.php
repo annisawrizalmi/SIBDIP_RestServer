@@ -28,6 +28,35 @@ public function AddUsers_post()
             'message' => validation_errors("Tolong Perhatikan ")
         ], RestController::HTTP_NOT_FOUND);
     } else {
+
+         //Upload Gambar
+         $file = $_FILES['avatar'];
+        
+         $path = "uploads/user/"; //direktori
+ 
+         //mengecek folder sudah ada atau belum
+         if(!is_dir($path))
+         {
+             mkdir($path, 0777, true);
+         }
+ 
+         $path_file = "";
+         //pengecekkan file yang diupload
+         if(!empty($file['name'])) {
+             $config['upload_path'] = './' . $path;
+             $config['allowed_types'] = "jpg|jpeg|png|gif";
+             $config['file_name'] = time();
+             $config['max_size'] = 1024;
+             $this->upload->initialize($config);
+ 
+             if($this->upload->do_upload('avatar')){
+                 //mendapatkan file yang berhasil diupload
+                 $uploadData = $this->upload->data();
+                 $path_file = './'.$path.$uploadData['file_name'];
+             }
+         }
+
+
         //load Data 
         $insert_data = [
             'pegawai_id'                => $users->idterurut($i),
@@ -78,7 +107,7 @@ public function AddUsers_post()
             'password'                  => $this->post('password', TRUE),
             'level'                     => $this->post('level', TRUE),
             'role'                      => $this->post('role', TRUE),
-            'avatar'                    => $this->post('avatar', TRUE),
+            'avatar'                    => $path_file,
             'avatar_slug'               => $this->post('avatar_slug', TRUE),
             'ava'                       => $this->post('ava', TRUE),
             'signature'                 => $this->post('signature', TRUE),
@@ -194,36 +223,11 @@ public function AddUsers_post()
         $this->form_validation->set_rules( 'golongan', 'Golongan Anda', 'required',
         array('required' => '{field} wajib diisi')
         );
-        $this->form_validation->set_rules( 'office', 'Kantor Anda', 'required',
-        array('required' => '{field} wajib diisi')
-        );
-        $this->form_validation->set_rules( 'office_phone', 'Telepon Kantor Anda', 'required|numeric',
-        array('required' => '{field} wajib diisi',
-        'numeric' => '{field} harus angka')
-        );
-        $this->form_validation->set_rules( 'training', 'Diklat Yang Pernah Anda Ikuti', 'required',
-        array('required' => '{field} wajib diisi')
-        );
-        $this->form_validation->set_rules( 'work_exp', 'Pengalaman Kerja Anda', 'required',
-        array('required' => '{field} wajib diisi')
-        );
-        $this->form_validation->set_rules( 'teach_exp', 'Pengalaman Mengajar Anda', 'required',
-        array('required' => '{field} wajib diisi')
-        );
-        $this->form_validation->set_rules( 'scientific_work', 'Karya Ilmiah Anda', 'required',
-        array('required' => '{field} wajib diisi')
-        );
-        $this->form_validation->set_rules( 'special_sub', 'Spesialis Mata Pelajaran', 'required',
-        array('required' => '{field} wajib diisi')
-        );
         $this->form_validation->set_rules( 'no_npwp', 'Nomor Pokok Wajib Pajak', 'required|numeric',
         array('required' => '{field} wajib diisi',
         'numeric' => '{field} harus angka')
         );
         $this->form_validation->set_rules( 'npwp', 'Punya Atau Tidak Nomor Pokok Wajib Pajak', 'required',
-        array('required' => '{field} wajib diisi')
-        );
-        $this->form_validation->set_rules( 'type_status', 'Narasumber Dari Dalam Atau Luar', 'required',
         array('required' => '{field} wajib diisi')
         );
         $this->form_validation->set_rules( 'blocked', 'Blokir, Ya atau Tidak', 'required',
