@@ -41,8 +41,6 @@ class M_Asistent extends CI_Model
         return $sql;
     }
 
-
-
     //GetById
     public function GetByIdAssistant($id)
     {

@@ -115,7 +115,7 @@ public function UsersUpdated_put($id)
         $this->response([
             'status' => 200,
             'error' => null,
-            'message' => 'Data Id telah : ' . $id . ' Berhasil Update'
+            'message' => 'Id ' . $id . ' Telah Berhasil Updated'
         ], RestController::HTTP_OK);
     } else {
         $this->response([

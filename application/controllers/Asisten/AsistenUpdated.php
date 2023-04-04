@@ -107,7 +107,7 @@ public function AssistantUpdated_put($id)
         $this->response([
             'status'                => 200,
             'error' => null,
-            'message' => 'Data Id telah : ' . $id . ' Berhasil Update'
+            'message' => 'Id ' . $id . ' telah Berhasil di Updated'
         ], RestController::HTTP_OK);
     } else {
         $this->response([

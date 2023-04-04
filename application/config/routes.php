@@ -73,7 +73,7 @@ $route['diklat_add']                               = 'Diklat/DiklatAdd/AddDiklat
 $route['diklat_deleted/(:any)']                    = 'Diklat/DiklatDeleted/DiklatDeleted/$1';
 $route['diklat_updated/(:any)']                    = 'Diklat/DiklatUpdated/DiklatUpdated/$1'; 
 
-//Jadwal - (belum oke)
+//Jadwal - (belum oke) -- jadwal updatenya gak jalan
 $route['jadwal_all_list']                          = 'Jadwal/JadwalListAll/index';
 $route['jadwal_by_id/(:any)']                      = 'Jadwal/JadwalGetId/JadwalGetById/$1';
 $route['jadwal_add']                               = 'Jadwal/JadwalAdd/AddJadwal';
