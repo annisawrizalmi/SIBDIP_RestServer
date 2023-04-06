@@ -41,7 +41,6 @@ class M_Users extends CI_Model
         return $sql;
     }
 
-
     //GetById
     public function GetByIdUsers($id)
     {

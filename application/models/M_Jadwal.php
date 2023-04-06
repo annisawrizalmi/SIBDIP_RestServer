@@ -67,12 +67,12 @@ class M_Jadwal extends CI_Model
     }
 
 
-    //  //updated Data
-    // public function updatedAssistant($id, $data)
-    // {
-    //     $this->db->update($this->user_tabel, $data, ['pegawai_id' => $id]);
-    //     return $this->db->affected_rows();
-    // }
+     //updated Data
+    public function updatedAssistant($id, $data)
+    {
+        $this->db->update($this->user_tabel, $data, ['pegawai_id' => $id]);
+        return $this->db->affected_rows();
+    }
 
     
 }

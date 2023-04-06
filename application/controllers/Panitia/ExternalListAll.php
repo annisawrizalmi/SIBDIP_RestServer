@@ -3,28 +3,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 use chriskacerguis\RestServer\RestController;
 
-class PesertaListAll extends RestController {
+class ExternalListAll extends RestController {
 
     function __construct()
     {
         // Construct the parent class
         parent::__construct();
-        $this->load->model('m_peserta');
+        $this->load->model('m_panitia');
     }
 
     public function index_get()
     {
-        $peserta = new m_pesertat;
-        $result_peserta = $peserta->getDataPeserta();
+        $panitia = new m_panitia;
+        $result_panitia = $panitia->getDataPanitia();
 
         //mendapatkan semua data
-        if ($result_peserta) {
+        if ($result_panitia) {
             $this->response([
                 'status' => 200,
                 'error' => false,
                 'message' => 'Berhasil Mendapatkan Data',
-                'totaldata' => count($result_peserta),
-                'data' => $result_peserta
+                'totaldata' => count($result_panitia),
+                'data' => $result_panitia
             ], RestController::HTTP_OK);
         }
         //data tidak ditemukan

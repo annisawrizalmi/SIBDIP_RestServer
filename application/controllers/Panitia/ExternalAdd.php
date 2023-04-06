@@ -3,20 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 use chriskacerguis\RestServer\RestController;
 
-class AsistenAdd extends RestController {
+class ExternalAdd extends RestController {
 
     function __construct()
     {
         // Construct the parent class
         parent::__construct();
-        $this->load->model('m_asistent');
+        $this->load->model('m_panitia');
         $this->load->library('form_validation');
     }
 //oke
 //menambahkan data
-public function AssistantAdd_post()
+public function AddExternal_post()
 {
-    $asistent = new m_asistent;
+    $panitia = new m_panitia;
 
     $i = $this->db->count_all('tb_pegawai');
 
@@ -32,7 +32,7 @@ public function AssistantAdd_post()
         //Upload Gambar
         $file = $_FILES['avatar'];
         
-        $path = "uploads/assistant/"; //direktori
+        $path = "uploads/external/"; //direktori
 
         //mengecek folder sudah ada atau belum
         if(!is_dir($path))
@@ -86,16 +86,8 @@ public function AssistantAdd_post()
             'jabatan_ext'               => $this->post('jabatan_ext', TRUE),
             'pangkat'                   => $this->post('pangkat', TRUE),
             'golongan'                  => $this->post('golongan', TRUE),
-            'office'                    => $this->post('office', TRUE),
-            'office_phone'              => $this->post('office_phone', TRUE),
-            'training'                  => $this->post('training', TRUE),
-            'work_exp'                  => $this->post('work_exp', TRUE),
-            'teach_exp'                 => $this->post('teach_exp', TRUE),
-            'scientific_work'           => $this->post('scientific_work', TRUE),
-            'special_sub'               => $this->post('special_sub', TRUE),
             'npwp'                      => $this->post('npwp', TRUE),
             'no_npwp'                   => $this->post('no_npwp', TRUE),
-            'type_status'               => $this->post('type_status', TRUE),
             'username'                  => $this->post('username', TRUE),
             'password'                  => $this->post('password', TRUE),
             'level'                     => $this->post('level', TRUE),
@@ -115,20 +107,20 @@ public function AssistantAdd_post()
         ];
 
         //Memasukkan Data 
-        $result = $asistent->insertAssistant($insert_data);
+        $result = $panitia->insertPanitia($insert_data);
 
         if ($result > 0 and !empty($result)) {
             //sukses
             $this->response([
                 'status' => 201,
                 'error' => false,
-                'message' => 'New Asistent Created',
+                'message' => 'New Panitia External Created',
             ], RestController::HTTP_CREATED);
         } else {
             $this->response([
                 'status' => 404,
                 'error' => true,
-                'message' => 'Failed to Create Asistent'
+                'message' => 'Failed to Create Panitia External'
             ], RestController::HTTP_BAD_REQUEST);
         }
 
@@ -177,7 +169,6 @@ public function AssistantAdd_post()
         $this->form_validation->set_rules( 'no_npwp', 'Nomor Pokok Wajib Pajak', 'numeric',
         array('numeric' => '{field} harus angka')
         );
-        // no_npwp
 
         return $this->form_validation->run();
     }

@@ -45,7 +45,7 @@ $route['instructor_add']                           = 'Instructor/InstructorAdd/A
 $route['instructor_deleted/(:any)']                = 'Instructor/InstructorDeleted/InstructorDeleted/$1';
 $route['instructor_updated/(:any)']                = 'Instructor/InstructorUpdated/InstructorUpdated/$1';
 
-//Panitia eksternal - (belum oke)
+//Panitia eksternal - (belum oke) 
 $route['external_all_list']                        = 'Panitia/ExternalListAll/index';
 $route['external_by_id/(:any)']                    = 'Panitia/ExternalGetId/ExternalGetById/$1';
 $route['external_add']                             = 'Panitia/ExternalAdd/AddExternal';
@@ -73,7 +73,7 @@ $route['diklat_add']                               = 'Diklat/DiklatAdd/AddDiklat
 $route['diklat_deleted/(:any)']                    = 'Diklat/DiklatDeleted/DiklatDeleted/$1';
 $route['diklat_updated/(:any)']                    = 'Diklat/DiklatUpdated/DiklatUpdated/$1'; 
 
-//Jadwal - (belum oke) -- jadwal updatenya gak jalan
+//Jadwal - (belum oke) -- jadwal updatenya gak jalan 
 $route['jadwal_all_list']                          = 'Jadwal/JadwalListAll/index';
 $route['jadwal_by_id/(:any)']                      = 'Jadwal/JadwalGetId/JadwalGetById/$1';
 $route['jadwal_add']                               = 'Jadwal/JadwalAdd/AddJadwal';
