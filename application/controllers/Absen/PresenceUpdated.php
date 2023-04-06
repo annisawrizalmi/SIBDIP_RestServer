@@ -15,7 +15,32 @@ class PresenceUpdated extends RestController {
     //Mengupdate Data
     public function PresenceUpdated_put($id)
     {
-       
+        $absen = new m_absen;
+
+        $data = [
+                    'assessment_id'                 => $this->put('assessment_id'),
+                    'fullname'                      => $this->put('fullname'),
+                    'address'                       => $this->put('address'),
+                    'present'                       => $this->put('present'),
+                    'total_present'                 => $this->put('total_present'),
+                    'signature'                     => $this->put('signature'),
+        ];
+
+        $update_result = $absen->updateAbsen($id, $data);
+
+        if ($update_result > 0) {
+            $this->response([
+                'status' => true,
+                'message' => 'NEW Absen Updated'
+            ], REST_Controller::HTTP_OK);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'FAILDE TO Updated Absen'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
+     
+        
     
     }
 

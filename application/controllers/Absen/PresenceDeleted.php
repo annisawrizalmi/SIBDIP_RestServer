@@ -14,6 +14,22 @@ class PresenceDeleted extends RestController {
     //menghapus
     public function PresenceDeleted_delete($id = null)
     {
+        $absen = new m_absen;
+
+        $cekData = $absen->deletedAbsen($id);
+
+        if ($cekData > 0) {
+            $this->response([
+                'status' => 200,
+                'error' => null,
+                'message' => 'Absen DELETED'
+            ], RestController::HTTP_OK);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'ID Absen Not Found'
+            ], RestController::HTTP_BAD_REQUEST);
+        }
         
     }
 }

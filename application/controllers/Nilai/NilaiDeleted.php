@@ -14,6 +14,21 @@ class NilaiDeleted extends RestController {
     //menghapus
     public function NilaiDeleted_delete($id = null)
     {
-        
+        $Nilai = new m_nilai;
+
+        $cekData = $Nilai->deletedNilai($id);
+
+        if ($cekData > 0) {
+            $this->response([
+                'status' => 200,
+                'error' => null,
+                'message' => 'Nilai DELETED'
+            ], RestController::HTTP_OK);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'ID Nilai Not Found'
+            ], RestController::HTTP_BAD_REQUEST);
+        }
     }
 }
