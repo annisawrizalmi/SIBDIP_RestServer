@@ -25,12 +25,12 @@ class UserDeleted extends RestController {
             $this->response([
                 'status' => 200,
                 'error' => null,
-                'message' => 'Panitia DELETED'
+                'message' => 'User DELETED'
             ], RestController::HTTP_OK);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'ID Panitia Not Found'
+                'message' => 'ID User Not Found'
             ], RestController::HTTP_BAD_REQUEST);
         }
     }

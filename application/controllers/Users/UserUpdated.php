@@ -50,10 +50,10 @@ public function UsersUpdated_put($id)
 
     $data['uid']                    = $this->input->post('uid', TRUE);
     $data['sort_id']                = $this->input->post('sort_id', TRUE);
-    $data['division_id']              = $this->input->post('division_id', TRUE);
-    $data['superior_id']              = $this->input->post('superior_id', TRUE);
-    // $data['assistant']              = $this->input->post('assistant', TRUE);
-    $data['sort_number']              = $this->input->post('sort_number', TRUE);
+    $data['division_id']            = $this->input->post('division_id', TRUE);
+    $data['superior_id']            = $this->input->post('superior_id', TRUE);
+    $data['assistant']              = $this->input->post('assistant', TRUE);
+    $data['sort_number']            = $this->input->post('sort_number', TRUE);
     $data['nik']                    = $this->input->post('nik', TRUE);
     $data['nip']                    = $this->input->post('nip', TRUE);
     $data['gelar_depan']            = $this->input->post('gelar_depan', TRUE);

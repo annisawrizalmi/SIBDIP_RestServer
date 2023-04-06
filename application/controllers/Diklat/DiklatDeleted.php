@@ -14,6 +14,21 @@ class DiklatDeleted extends RestController {
     //menghapus
     public function DiklatDeleted_delete($id = null)
     {
-        
+        $diklat = new m_diklat;
+
+        $cekData = $diklat->deletedDiklat($id);
+
+        if ($cekData > 0) {
+            $this->response([
+                'status' => 200,
+                'error' => null,
+                'message' => 'Diklat DELETED'
+            ], RestController::HTTP_OK);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'ID Diklat Not Found'
+            ], RestController::HTTP_BAD_REQUEST);
+        }
     }
 }
