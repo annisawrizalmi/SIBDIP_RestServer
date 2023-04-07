@@ -70,7 +70,7 @@ class DiklatAdd extends RestController {
             ];
     
             //Memasukkan Data 
-            $result = $users->insertDiklat($insert_data);
+            $result = $diklat->insertDiklat($insert_data);
     
             if ($result > 0 and !empty($result)) {
                 //sukses

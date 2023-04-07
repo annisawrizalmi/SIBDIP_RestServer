@@ -26,7 +26,8 @@ $route['translate_uri_dashes'] = FALSE;
 */
 
 /* User API Routes */
-// $route['api/login'] = 'api/Login/login';
+
+$route['login']                                    = 'Auth/index';
 
 
 /* ROUTES RESTSERVER SI - BDIP - Pelatihan */

@@ -15,7 +15,7 @@ class DiklatUpdated extends RestController {
     //Mengupdate Data
     public function DiklatUpdated_put($id)
     {
-        $diklat = new DiklatModel;
+        $diklat = new m_diklat;
 
         $data = [
             'assessment_to'                         => $this->put('assessment_to'),
@@ -60,12 +60,12 @@ class DiklatUpdated extends RestController {
             $this->response([
                 'status' => true,
                 'message' => 'NEW assessment Updated'
-            ], REST_Controller::HTTP_OK);
+            ], RestController::HTTP_OK);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'FAILDE TO Updated assessment'
-            ], REST_Controller::HTTP_BAD_REQUEST);
+                'message' => 'Failed TO Updated assessment'
+            ], RestController::HTTP_BAD_REQUEST);
         }
     
     }
